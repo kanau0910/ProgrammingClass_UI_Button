@@ -17,8 +17,11 @@ public class Cannon : MonoBehaviour
     void Update()
     {
         m_targetObject = GetTargetObject();
-
-        this.transform.LookAt(m_targetObject.transform, new Vector3( 0, 0,- 1.0f));
+        if(m_targetObject != null){
+            this.transform.LookAt(m_targetObject.transform, new Vector3( 0, 0,- 1.0f));
+        }else{
+            this.transform.rotation = Quaternion.Euler(-90,0,0);
+        }
     }
 
     GameObject GetTargetObject()
@@ -34,6 +37,10 @@ public class Cannon : MonoBehaviour
     }
 
     void VariableWayShoot(int wayNum, float startEulerOffset, float wayMargine){
+        if(m_targetObject == null){
+            return;
+        }
+
         for(int i = 0; i < wayNum; i++){
             GameObject bulletInstance = Instantiate(m_bulletPrefab);
             bulletInstance.transform.position = this.transform.position;

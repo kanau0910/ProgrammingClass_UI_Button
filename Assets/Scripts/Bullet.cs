@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Bullet : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -31,16 +32,14 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void OnCollisionEnter(Collision other)
-    {
-        Debug.Log($"{other.transform.name} is OnCollisionEnter in Bullet.");
-    }
-
     public void OnTriggerEnter(Collider other){
         if(other.transform.name == "HitModel_Enemy"){
+            GameObject TargetObject = other.transform.parent.gameObject;
+            Enemy enemyComponent = TargetObject.GetComponent<Enemy>();
+            enemyComponent.TakeDamage(-1);
+
             Destroy(this.gameObject);
         }
-        Debug.Log($"{other.transform.name} is OnTriggerEnter in Bullet.");
     }
 
     public float m_speed;

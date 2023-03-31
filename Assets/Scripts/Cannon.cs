@@ -11,6 +11,8 @@ public class Cannon : MonoBehaviour
         m_bulletPrefab = Resources.Load<GameObject>("Prefabs/Bullet");
         m_homingBulletPrefab = Resources.Load<GameObject>("Prefabs/HomingBullet");
         m_weaponType = E_WeaponType.eSingleShoot;
+        m_bulletAttribute = E_BulletAttribute.eFileBullet;
+        m_bulletPrefab = Resources.Load<GameObject>("Prefabs/FireBullet");
     }
 
     // Update is called once per frame
@@ -90,8 +92,30 @@ public class Cannon : MonoBehaviour
         m_weaponType = (E_WeaponType)nextWeaponTypeId;
     }
 
+    public E_BulletAttribute GetBulletAttribute(){
+        return m_bulletAttribute;
+    }
+
+    public void ChangeBulletAttribute(){
+        int nextBulletAttributeId = (int)m_bulletAttribute + 1;
+        if(nextBulletAttributeId >= (int)(E_BulletAttribute.eNum)){
+            nextBulletAttributeId = (int)(E_BulletAttribute.eFileBullet);
+        }
+        m_bulletAttribute = (E_BulletAttribute)nextBulletAttributeId;
+
+        switch(m_bulletAttribute){
+            case E_BulletAttribute.eFileBullet:
+                m_bulletPrefab = Resources.Load<GameObject>("Prefabs/FireBullet");
+                break;
+            case E_BulletAttribute.eWaterBullet:
+                m_bulletPrefab = Resources.Load<GameObject>("Prefabs/WaterBullet");
+                break;
+        }
+    }
+
     GameObject m_targetObject;
     GameObject m_bulletParent;
+    [SerializeField]
     GameObject m_bulletPrefab;
     GameObject m_homingBulletPrefab;
 
@@ -103,4 +127,12 @@ public class Cannon : MonoBehaviour
     }
     [SerializeField]
     E_WeaponType m_weaponType;
+
+    public enum E_BulletAttribute{
+        eFileBullet = 0,
+        eWaterBullet,
+        eNum
+    }
+    [SerializeField]
+    E_BulletAttribute m_bulletAttribute;
 }

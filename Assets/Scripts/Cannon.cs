@@ -77,6 +77,9 @@ public class Cannon : MonoBehaviour
             case E_WeaponType.e5WayShoot:
                 VariableWayShoot(5, -60.0f, 30.0f);
                 break;
+            case E_WeaponType.e7WayShoot:
+                VariableWayShoot(7, -90.0f, 30.0f);
+                break;
         }
     }
 
@@ -110,6 +113,9 @@ public class Cannon : MonoBehaviour
             case E_BulletAttribute.eWaterBullet:
                 m_bulletPrefab = Resources.Load<GameObject>("Prefabs/WaterBullet");
                 break;
+            case E_BulletAttribute.eGreenBullet:
+                m_bulletPrefab = Resources.Load<GameObject>("Prefabs/GreenBullet");
+                break;
         }
     }
 
@@ -123,6 +129,7 @@ public class Cannon : MonoBehaviour
         eSingleShoot = 0,
         e3WayShoot,
         e5WayShoot,
+        e7WayShoot,
         eNum
     }
     [SerializeField]
@@ -131,6 +138,7 @@ public class Cannon : MonoBehaviour
     public enum E_BulletAttribute{
         eFileBullet = 0,
         eWaterBullet,
+        eGreenBullet,
         eNum
     }
     [SerializeField]

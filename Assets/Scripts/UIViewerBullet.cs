@@ -27,6 +27,9 @@ public class UIViewerBullet : MonoBehaviour
             case Cannon.E_BulletAttribute.eWaterBullet:
                 m_viewerImageComponent.sprite = Resources.Load<Sprite>("ProjectAssets/UI/WaterBullet");
                 break;
+            case Cannon.E_BulletAttribute.eGreenBullet:
+                m_viewerImageComponent.sprite = Resources.Load<Sprite>("ProjectAssets/UI/Green");
+                break;
         }
     }
 

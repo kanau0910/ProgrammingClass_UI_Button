@@ -31,6 +31,9 @@ public class UIViewerWeapon : MonoBehaviour
             case Cannon.E_WeaponType.e5WayShoot:
                 m_viewerImageComponent.sprite = Resources.Load<Sprite>("ProjectAssets/UI/Weapon_5WayShoot");
                 break;
+            case Cannon.E_WeaponType.e7WayShoot:
+                m_viewerImageComponent.sprite = Resources.Load<Sprite>("ProjectAssets/UI/Weapon_7WayShoot");
+                break;
         }
     }
 
